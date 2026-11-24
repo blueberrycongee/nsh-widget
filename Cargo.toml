@@ -8,6 +8,7 @@ repository = "https://github.com/blueberrycongee/nsh-widget"
 keywords = ["nshm", "widgetkit", "macos", "native-shell"]
 include = [
   "Cargo.toml",
+  "LICENSE",
   "build.rs",
   "nsh.json",
   "README.md",

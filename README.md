@@ -9,6 +9,11 @@ Native Apple **WidgetKit** module (`nshm`) for [Native Shell](https://github.com
   - **Pure-TSX `<WidgetPreview>`** component for instant local Light / Dark / Tinted preview inside your NSH app.
   - **Zero-Xcode `.appex` builder** (`nsh-widget build`) compiling SwiftUI `NshWidgetRuntime` directly via `xcrun swiftc` and integrating with `nsh package --target macos` via `macos.extensions`.
 
+## Requirements
+
+- **Native Shell** `nightly` (or the next release that includes [longbridge/nsh#2878](https://github.com/longbridge/nsh/pull/2878) and [longbridge/nsh#2879](https://github.com/longbridge/nsh/pull/2879)).
+- **macOS** with Xcode Command Line Tools (`xcrun swiftc`) for building the `.appex` WidgetKit extension.
+
 ## Installation
 
 Add `nsh-widget` to your Native Shell app:
@@ -38,8 +43,16 @@ nsh add --path ../nsh-widget
 
 ### 2. Build the macOS `.appex` extension (zero Xcode project)
 
+Install the `nsh-widget` CLI:
+
 ```sh
-cargo run --manifest-path ../nsh-widget/Cargo.toml --features cli --bin nsh-widget -- build --app .
+cargo install --git https://github.com/blueberrycongee/nsh-widget --features cli
+```
+
+Then build the extension from your app directory:
+
+```sh
+nsh-widget build --app .
 ```
 
 This compiles a pure-SwiftUI `macos/build/Widgets.appex` using `xcrun --sdk macosx swiftc`.
