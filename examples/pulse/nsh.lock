@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "packages": [
+    {
+      "name": "nsh-widget",
+      "version": "0.1.0",
+      "path": "../..",
+      "module": "nsh-widget/native",
+      "exports": {
+        "nsh-widget": "ts/index.tsx"
+      }
+    }
+  ]
+}

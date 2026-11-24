@@ -1,0 +1,60 @@
+[package]
+name = "nsh-widget"
+version = "0.1.0"
+edition = "2024"
+license = "Apache-2.0"
+description = "Native Apple WidgetKit module (nshm) for Native Shell"
+repository = "https://github.com/blueberrycongee/nsh-widget"
+keywords = ["nshm", "widgetkit", "macos", "native-shell"]
+include = [
+  "Cargo.toml",
+  "build.rs",
+  "nsh.json",
+  "README.md",
+  "src/**",
+  "swift/**",
+  "ts/**",
+]
+
+[lib]
+name = "nsh_widget"
+path = "src/lib.rs"
+
+[[bin]]
+name = "nsh-widget"
+path = "src/bin/nsh-widget.rs"
+required-features = ["cli"]
+
+[features]
+default = []
+cli = ["dep:anyhow", "dep:clap", "dep:plist"]
+
+[dependencies]
+nsh-core = "0.6"
+log = "0.4"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+taffy = { version = "0.16", default-features = false, features = [
+  "std",
+  "flexbox",
+  "grid",
+  "block_layout",
+  "content_size",
+] }
+tokio = { version = "1", default-features = false, features = ["sync"] }
+anyhow = { version = "1", optional = true }
+clap = { version = "4.6", features = ["derive"], optional = true }
+plist = { version = "1.7", optional = true }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+dispatch2 = "0.3.1"
+
+[dev-dependencies]
+nsh-core = { version = "0.6", features = ["declarations"] }
+
+# Until crates.io ships nsh-core with taffy 0.16, patch crates.io to main for
+# standalone `cargo test` and `nsh-widget build`. Cargo ignores `[patch]` when
+# this crate is consumed as a dependency by an NSH app.
+[patch.crates-io]
+nsh-core = { git = "https://github.com/longbridge/nsh", branch = "main" }
+nsh-macros = { git = "https://github.com/longbridge/nsh", branch = "main" }

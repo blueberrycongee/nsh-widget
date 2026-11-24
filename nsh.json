@@ -1,0 +1,8 @@
+{
+  "name": "nsh-widget",
+  "version": "0.1.0",
+  "nsh": ">=0.6",
+  "exports": {
+    "nsh-widget": "ts/index.tsx"
+  }
+}

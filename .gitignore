@@ -1,0 +1,8 @@
+/target
+/Cargo.lock
+.cargo/config.toml
+.DS_Store
+*.tmp-*
+examples/*/.nsh
+examples/*/target
+examples/*/macos/build

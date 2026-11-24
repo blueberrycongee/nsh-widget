@@ -1,0 +1,27 @@
+{
+  "name": "Pulse",
+  "id": "com.example.pulse",
+  "version": "1.0.0",
+  "build": 1,
+  "schemes": ["pulse"],
+  "window": {
+    "title": "Pulse Widgets"
+  },
+  "dependencies": {
+    "nsh-widget": { "path": "../.." }
+  },
+  "macos": {
+    "entitlements": {
+      "com.apple.security.application-groups": ["nsh.local.com.example.pulse.widgets"]
+    },
+    "extensions": [
+      {
+        "path": "macos/build/Widgets.appex",
+        "entitlements": {
+          "com.apple.security.app-sandbox": true,
+          "com.apple.security.application-groups": ["nsh.local.com.example.pulse.widgets"]
+        }
+      }
+    ]
+  }
+}
